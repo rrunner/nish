@@ -8,3 +8,10 @@
 nish provides discrete and continuous scales and different themes to be used
 with ggplot2
 }
+\seealso{
+Useful links:
+\itemize{
+\item \url{https://github.com/rrunner/nish}
+\item Report issues at \url{https://github.com/rrunner/nish/issues}
+}
+}

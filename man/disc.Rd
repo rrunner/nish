@@ -63,7 +63,7 @@ scale_linetype_nish(...)
 }
 \arguments{
 \item{...}{Additional arguments are passed to
-\code{\link[ggplot2]{discrete_scale}}().}
+\code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale}}().}
 }
 \description{
 Discrete nish scales

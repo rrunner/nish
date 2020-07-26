@@ -3,6 +3,13 @@
 #' nish provides discrete and continuous scales and different themes to be used
 #' with ggplot2
 #'
+#' @seealso
+#' Useful links:
+#' \itemize{
+#'   \item \url{https://github.com/rrunner/nish}
+#'   \item Report issues at \url{https://github.com/rrunner/nish/issues}
+#' }
+#'
 #' @docType package
 #' @name nish
 NULL
@@ -72,7 +79,7 @@ create_discrete_scale <- function(aes = c("colour", "fill", "linetype"),
 #' Discrete nish scales
 #'
 #' @param ... Additional arguments are passed to
-#'   \code{\link[ggplot2]{discrete_scale}}().
+#'   \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale}}().
 #' @name disc
 NULL
 
@@ -270,8 +277,8 @@ create_gradient_scale <- function(col = c("blue", "grey", "pink"),
 #' Gradient nish scales
 #'
 #' @param ... Additional arguments are passed to
-#'   \code{\link[ggplot2:scale_gradient]{scale_colour_gradient}}() or
-#'   \code{\link[ggplot2:scale_gradient]{scale_fill_gradient}}().
+#'   \code{\link[ggplot2:scale_gradient]{ggplot2::scale_colour_gradient}}() or
+#'   \code{\link[ggplot2:scale_gradient]{ggplot2::scale_fill_gradient}}().
 #' @name grad
 NULL
 
@@ -402,8 +409,8 @@ create_gradient2_scale <- function(type = NULL,
 #' Gradient2 nish scales
 #'
 #' @param ... Additional arguments are passed to
-#'   \code{\link[ggplot2:scale_gradient]{scale_colour_gradient2}}() or
-#'   \code{\link[ggplot2:scale_gradient]{scale_fill_gradient2}}().
+#'   \code{\link[ggplot2:scale_gradient]{ggplot2::scale_colour_gradient2}}() or
+#'   \code{\link[ggplot2:scale_gradient]{ggplot2::scale_fill_gradient2}}().
 #' @name grad2
 NULL
 
@@ -480,10 +487,10 @@ create_gradientn_scale <- function(aes = c("colour", "fill")) {
 #' Gradientn nish scales
 #'
 #' @param ... Additional arguments are passed to
-#'   \code{\link[ggplot2:scale_gradient]{scale_colour_gradientn}}() or
-#'   \code{\link[ggplot2:scale_gradient]{scale_fill_gradientn}}(). For example,
-#'   use argument 'colours' to provide your own vector of colours for the
-#'   n-colour gradient.
+#'   \code{\link[ggplot2:scale_gradient]{ggplot2::scale_colour_gradientn}}() or
+#'   \code{\link[ggplot2:scale_gradient]{ggplot2::scale_fill_gradientn}}(). For
+#'   example, use argument 'colours' to provide your own vector of colours for
+#'   the n-colour gradient.
 #' @name gradn
 NULL
 
