@@ -10,10 +10,11 @@ create_gradient_scale(
 )
 }
 \arguments{
-\item{col}{A character string of gradient nuanse. Allowed values are "blue",
-"grey" and "pink".}
+\item{col}{A character string of gradient nuance. Allowed values are "blue",
+"grey" and "pink" (partial matching).}
 
-\item{aes}{A character aesthetic. Allowed values are "colour" and "fill".}
+\item{aes}{A character aesthetic. Allowed values are "colour" and "fill"
+(partial matching).}
 }
 \value{
 A function that returns a two colour gradient scale when called.
@@ -24,9 +25,4 @@ Create a gradient scale using nish colour scheme.
 \details{
 If options ggplot2.continuous.colour and ggplot2.continuous.fill are unset,
 gradient is used instead of continuous.
-}
-\examples{
-scale_fill_gradient_nish_blue <- nish:::create_gradient_scale(col = "blue",
-aes = "fill")
-
 }

@@ -10,20 +10,18 @@ create_gradient2_scale(type = NULL, aes = c("colour", "fill"))
 \item{type}{A character denoting the gradient2 type. Allowed values are "pn1"
 and "pn2".}
 
-\item{aes}{A character aesthetic. Allowed values are "colour" and "fill".}
+\item{aes}{A character aesthetic. Allowed values are "colour" and "fill"
+(partial matching).}
 }
 \value{
-A function that returns a diverging colour gradient scale when called.
+A function that returns a diverging colour gradient scale when
+called.
 }
 \description{
-Create a gradient2 scale (diverging colour gradient) using nish colour scheme.
+Create a gradient2 scale (diverging colour gradient) using nish colour
+scheme.
 }
 \details{
 If options ggplot2.continuous.colour and ggplot2.continuous.fill are unset,
 gradient is used instead of continuous.
-}
-\examples{
-scale_colour_gradient2_nish_pos_neg <- nish:::create_gradient2_scale(
-type = "pn1", aes = "colour")
-
 }

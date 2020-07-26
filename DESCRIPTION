@@ -1,5 +1,5 @@
 Package: nish
-Title: nish is a ggplot theme
+Title: nish is a ggplot2 theme
 Version: 0.0.0.9000
 Authors@R: 
     person("rrunner", role = c("aut", "cre"),

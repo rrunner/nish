@@ -15,8 +15,10 @@ scale_fill_gradientn_nish(...)
 }
 \arguments{
 \item{...}{Additional arguments are passed to
-\code{ggplot2::scale_colour_gradientn}() or
-\code{ggplot2::scale_fill_gradientn}().}
+\code{\link[ggplot2:scale_gradient]{scale_colour_gradientn}}() or
+\code{\link[ggplot2:scale_gradient]{scale_fill_gradientn}}(). For example,
+use argument 'colours' to provide your own vector of colours for the
+n-colour gradient.}
 }
 \description{
 Gradientn nish scales

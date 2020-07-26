@@ -14,6 +14,7 @@ theme_nish_pink()
 theme_nish_white()
 }
 \description{
-nish themes with light blue ("#e4f2ff"), light pink ("#fcebe3") and white
-backgrounds.
+nish themes with light blue ("#e4f2ff"), light pink ("#fcebe3") or white
+background. All nish themes are based on the same underlying internal base
+theme.
 }

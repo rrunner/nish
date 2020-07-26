@@ -33,8 +33,8 @@ scale_fill_gradient_nish_pink(...)
 }
 \arguments{
 \item{...}{Additional arguments are passed to
-\code{ggplot2::scale_colour_gradient}() or
-\code{ggplot2::scale_fill_gradient}().}
+\code{\link[ggplot2:scale_gradient]{scale_colour_gradient}}() or
+\code{\link[ggplot2:scale_gradient]{scale_fill_gradient}}().}
 }
 \description{
 Gradient nish scales

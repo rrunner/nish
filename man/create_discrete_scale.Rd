@@ -8,7 +8,7 @@ create_discrete_scale(aes = c("colour", "fill", "linetype"), pal = NULL)
 }
 \arguments{
 \item{aes}{A character aesthetic. Allowed values are "colour", "fill" and
-"linetype".}
+"linetype" (partial matching).}
 
 \item{pal}{A character vector containing the palette.}
 }
@@ -17,9 +17,4 @@ A function that returns a discrete scale when called.
 }
 \description{
 Create a discrete scale using nish colour scheme.
-}
-\examples{
-scale_colour_nish_blue <- nish:::create_discrete_scale(aes = "colour",
-pal = manual_palettes[["blue"]])
-
 }

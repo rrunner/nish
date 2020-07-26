@@ -24,8 +24,8 @@ scale_fill_gradient2_nish_pos_neg2(...)
 }
 \arguments{
 \item{...}{Additional arguments are passed to
-\code{ggplot2::scale_colour_gradient2}() or
-\code{ggplot2::scale_fill_gradient2}().}
+\code{\link[ggplot2:scale_gradient]{scale_colour_gradient2}}() or
+\code{\link[ggplot2:scale_gradient]{scale_fill_gradient2}}().}
 }
 \description{
 Gradient2 nish scales
