@@ -510,65 +510,139 @@ scale_fill_gradientn_nish <- create_gradientn_scale(aes = "fill")
 
 # themes ----------
 
+#' Change theme settings conditional on 'geom_*' used in the plot
+#'
+#' Method to change theme settings conditional on 'geom_*' used in the plot
+#'
+#' The original idea was to use:
+#' \code{plot$theme <- ggplot2:::add_theme(plot$theme, object, "object")}
+#' for this purpose but \code{ggplot2:::add_theme}() is an internal ggplot2
+#' function and thus not exported.
+#'
+#' Instead, the current theme in \code{object} consist of \code{theme_nish_*}
+#' settings. These theme properties are further modified based on 'geom_*' in
+#' this method.
+#'
+#' \code{plot$theme} may initially (as input to this method) be an empty list if
+#' no \code{theme}() calls have been performed or set in working environment.
+#' \code{object} always replaces an existing theme in \code{plot$theme}.
+#'
+#' Note: The conditional part of the theme settings does not work with
+#' \code{ggplot2::theme_set}(). Explicit \code{theme_nish_*()} calls required to
+#' enable conditional theme settings.
+#'
+#' @param object An object (theme) to add to the plot.
+#' @param plot The ggplot object to add \code{object} to.
+#' @param object_name The name of the object to add.
+#'
+#' @return A ggplot object.
+#' @export
+#' @importFrom ggplot2 ggplot_add %+replace%
+ggplot_add.conditional_theme <- function(object, # nolint
+                                         plot,
+                                         object_name) {
+
+  if (inherits(plot$layers[[1]]$geom, "GeomLine")) {
+    object <- object +
+      ggplot2::theme(
+        panel.grid.major.x = ggplot2::element_blank()
+      )
+  } else if (inherits(plot$layers[[1]]$geom, "GeomBar")) {
+    object <- object +
+      ggplot2::theme(
+        panel.grid.major.x = ggplot2::element_blank(),
+        panel.grid.major.y = ggplot2::element_blank()
+      )
+  }
+
+  if (ggplot2::is.theme(plot$theme)) {
+    # replace (overwrite) current theme by 'nish' theme
+    plot$theme <- plot$theme %+replace% object
+  } else {
+    # otherwise insert 'nish' theme
+    plot$theme <- object
+  }
+
+  plot
+}
+
 #' nish themes
 #'
-#' nish themes with light blue ("#e4f2ff"), light pink ("#fcebe3") or white
-#' background. All nish themes are based on the same underlying internal base
-#' theme.
+#' nish themes with either light blue ("#e4f2ff"), light pink ("#fcebe3") or
+#' white background. All nish themes are based on the same underlying internal
+#' base theme.
+#'
+#' Theme settings are conditional on 'geom_*' used in the plot.
+#'
+#' Note:
+#' \itemize{
+#'   \item The conditional part of the theme settings does not work with
+#' \code{ggplot2::theme_set}(). For example, by using
+#' \code{old_theme <- theme_set(theme_nish_blue())}.
+#' However, \code{theme_nish_*()} can be be called explicitly to enable
+#' conditional theme settings.
+#'   \item axis.ticks are set which does not agree to description.}
 #' @name theme_nish
 NULL
 
-#'@importFrom ggplot2 %+replace%
+# base theme (white grid)
+#' @noRd
 theme_nish_base <- function() {
-  ggplot2::theme_minimal() %+replace%
+  ggplot2::theme_minimal() +
     ggplot2::theme(
       text = ggplot2::element_text(family = "sans",
                                    colour = "#1d1d1b"),
-      panel.grid.minor = ggplot2::element_blank(),
-      panel.grid.major.x = ggplot2::element_blank(),
+      axis.ticks = ggplot2::element_line(colour = "#1d1d1b"),
+      panel.grid.minor.x = ggplot2::element_blank(),
+      panel.grid.minor.y = ggplot2::element_blank(),
+      panel.grid.major.x = ggplot2::element_line(colour = "white"),
       panel.grid.major.y = ggplot2::element_line(colour = "white")
       )
 }
 
-# blue theme
-
+# blue theme (white grid)
 #' @rdname theme_nish
 #' @export
-#' @importFrom ggplot2 %+replace%
 theme_nish_blue <- function() {
-  theme_nish_base() %+replace%
+  t <- theme_nish_base() +
     ggplot2::theme(
       panel.background = ggplot2::element_rect(fill = "#e4f2ff"),
       panel.border = ggplot2::element_rect(colour = "#e4f2ff",
                                            fill = NA)
       )
+
+  class(t) <- c("conditional_theme", class(t))
+  t
 }
 
-# pink theme
-
+# pink theme (white grid)
 #' @rdname theme_nish
 #' @export
-#' @importFrom ggplot2 %+replace%
 theme_nish_pink <- function() {
-  theme_nish_base() %+replace%
+  t <- theme_nish_base() +
     ggplot2::theme(
       panel.background = ggplot2::element_rect(fill = "#fcebe3"),
       panel.border = ggplot2::element_rect(colour = "#fcebe3",
                                            fill = NA)
       )
+
+  class(t) <- c("conditional_theme", class(t))
+  t
 }
 
 # white theme (blue grid)
-
 #' @rdname theme_nish
 #' @export
-#' @importFrom ggplot2 %+replace%
 theme_nish_white <- function() {
-  theme_nish_base() %+replace%
+  t <- theme_nish_base() +
     ggplot2::theme(
       panel.background = ggplot2::element_rect(fill = "white"),
       panel.border = ggplot2::element_rect(colour = "#e4f2ff",
                                            fill = NA),
+      panel.grid.major.x = ggplot2::element_line(colour = "#e4f2ff"),
       panel.grid.major.y = ggplot2::element_line(colour = "#e4f2ff")
       )
+
+  class(t) <- c("conditional_theme", class(t))
+  t
 }
