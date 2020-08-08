@@ -14,19 +14,30 @@ theme_nish_pink()
 theme_nish_white()
 }
 \description{
-nish themes with either light blue ("#e4f2ff"), light pink ("#fcebe3") or
-white background. All nish themes are based on the same underlying internal
-base theme.
+nish themes with either light blue, light pink or white background. All nish
+themes are based on the same underlying internal base theme.
 }
 \details{
-Theme settings are conditional on 'geom_*' used in the plot.
-
-Note:
+Allows for conditional theme settings, see
+\code{\link[nish:theme_cond]{nish::ggplot_add.conditional_theme}}().
+}
+\note{
 \itemize{
-\item The conditional part of the theme settings does not work with
+\item Conditional theme settings does not work with
 \code{ggplot2::theme_set}(). For example, by using
 \code{old_theme <- theme_set(theme_nish_blue())}.
 However, \code{theme_nish_*()} can be be called explicitly to enable
 conditional theme settings.
-\item axis.ticks are set which does not agree to description.}
+\item axis.ticks are set which does not fully agree with requirements.
+}
+
+To adjust nish themes (for developers):
+\itemize{
+\item Modify theme settings in \code{theme_nish_base}() for settings
+applicable to all \code{theme_nish_*()} colour themes.
+\item Adjust \code{theme_nish_blue}(), \code{theme_nish_pink}() or
+\code{theme_nish_white}() for settings that are specific to each colour
+theme.
+\item Adjust \code{nish::ggplot_add.conditional_theme}() for any
+conditional theme logic.}
 }

@@ -510,33 +510,38 @@ scale_fill_gradientn_nish <- create_gradientn_scale(aes = "fill")
 
 # themes ----------
 
-#' Change theme settings conditional on 'geom_*' used in the plot
+#' Change theme settings conditional on the type of plot
 #'
-#' Method to change theme settings conditional on 'geom_*' used in the plot
+#' Method to change theme settings conditional on the type of plot such as
+#' geom, facet etc.
 #'
 #' The original idea was to use:
 #' \code{plot$theme <- ggplot2:::add_theme(plot$theme, object, "object")}
 #' for this purpose but \code{ggplot2:::add_theme}() is an internal ggplot2
-#' function and thus not exported.
+#' function and is not exported.
 #'
 #' Instead, the current theme in \code{object} consist of \code{theme_nish_*}
-#' settings. These theme properties are further modified based on 'geom_*' in
-#' this method.
+#' settings. These theme properties are further modified based on the type of
+#' plot requested in the ggplot2 call, i.e. based on the geom, facet etc.
+#' outside the actual \code{theme_nish_*}() call, by this method.
 #'
 #' \code{plot$theme} may initially (as input to this method) be an empty list if
-#' no \code{theme}() calls have been performed or set in working environment.
-#' \code{object} always replaces an existing theme in \code{plot$theme}.
+#' no \code{theme}() calls have been performed or set by the user in the working
+#' environment. The argument \code{object} always replaces an existing theme in
+#' \code{plot$theme}.
 #'
-#' Note: The conditional part of the theme settings does not work with
-#' \code{ggplot2::theme_set}(). Explicit \code{theme_nish_*()} calls required to
-#' enable conditional theme settings.
+#' @note
+#' Conditional theme settings does not work with \code{ggplot2::theme_set}().
+#' Explicit \code{theme_nish_*()} call is required by the user to enable
+#' conditional theme settings.
 #'
 #' @param object An object (theme) to add to the plot.
-#' @param plot The ggplot object to add \code{object} to.
+#' @param plot The ggplot object to add \code{object} to as an list component.
 #' @param object_name The name of the object to add.
 #'
 #' @return A ggplot object.
 #' @export
+#' @name theme_cond
 #' @importFrom ggplot2 ggplot_add %+replace%
 ggplot_add.conditional_theme <- function(object, # nolint
                                          plot,
@@ -568,20 +573,31 @@ ggplot_add.conditional_theme <- function(object, # nolint
 
 #' nish themes
 #'
-#' nish themes with either light blue ("#e4f2ff"), light pink ("#fcebe3") or
-#' white background. All nish themes are based on the same underlying internal
-#' base theme.
+#' nish themes with either light blue, light pink or white background. All nish
+#' themes are based on the same underlying internal base theme.
 #'
-#' Theme settings are conditional on 'geom_*' used in the plot.
+#' Allows for conditional theme settings, see
+#' \code{\link[nish:theme_cond]{nish::ggplot_add.conditional_theme}}().
 #'
-#' Note:
+#' @note
 #' \itemize{
-#'   \item The conditional part of the theme settings does not work with
+#'   \item Conditional theme settings does not work with
 #' \code{ggplot2::theme_set}(). For example, by using
 #' \code{old_theme <- theme_set(theme_nish_blue())}.
 #' However, \code{theme_nish_*()} can be be called explicitly to enable
 #' conditional theme settings.
-#'   \item axis.ticks are set which does not agree to description.}
+#'   \item axis.ticks are set which does not fully agree with requirements.
+#'   }
+#'
+#' @note To adjust nish themes (for developers):
+#' \itemize{
+#'   \item Modify theme settings in \code{theme_nish_base}() for settings
+#'   applicable to all \code{theme_nish_*()} colour themes.
+#'   \item Adjust \code{theme_nish_blue}(), \code{theme_nish_pink}() or
+#'   \code{theme_nish_white}() for settings that are specific to each colour
+#'   theme.
+#'   \item Adjust \code{nish::ggplot_add.conditional_theme}() for any
+#'   conditional theme logic.}
 #' @name theme_nish
 NULL
 
