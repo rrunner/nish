@@ -13,3 +13,7 @@ RoxygenNote: 7.1.0
 Imports: 
     ggplot2 (>= 3.3.1),
     scales (>= 1.1.1)
+Suggests: 
+    purrr,
+    stringr,
+    testthat
