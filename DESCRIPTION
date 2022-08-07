@@ -1,19 +1,19 @@
 Package: nish
 Title: nish is a ggplot2 theme
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R:
     person("rrunner", role = c("aut", "cre"),
            email = "therainbowrunner@gmail.com")
-Description: nish provides discrete and continuous scales and different themes 
+Description: nish provides discrete and continuous scales and different themes
     to be used with ggplot2.
 License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
-Imports: 
+RoxygenNote: 7.2.1
+Imports:
     ggplot2 (>= 3.3.1),
     scales (>= 1.1.1)
-Suggests: 
+Suggests:
     purrr,
     stringr,
     testthat
